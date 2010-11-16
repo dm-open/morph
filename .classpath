@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="tests"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="var" path="GRADLE_CACHE/org.spockframework/spock-core/jars/spock-core-0.4-groovy-1.7.jar" sourcepath="GRADLE_CACHE/org.spockframework/spock-core/sources/spock-core-0.4-groovy-1.7-sources.jar"/>
+	<classpathentry exported="true" kind="var" path="GRADLE_CACHE/org.codehaus.groovy/groovy-all/jars/groovy-all-1.7.4.jar" sourcepath="GRADLE_CACHE/org.codehaus.groovy/groovy-all/sources/groovy-all-1.7.4-sources.jar"/>
+	<classpathentry exported="true" kind="var" path="GRADLE_CACHE/junit/junit/jars/junit-4.8.1.jar" sourcepath="GRADLE_CACHE/junit/junit/sources/junit-4.8.1-sources.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
