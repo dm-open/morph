@@ -19,6 +19,7 @@
 		<dependency org="net.sourceforge.cglib" name="com.springsource.net.sf.cglib" rev="2.2.0" conf="runtime"/>
 
 		<dependency org="org.codehaus.groovy" name="com.springsource.org.codehaus.groovy" rev="1.7.3" conf="build->runtime"/>
+		<dependency org="org.objectweb.asm"  name="com.springsource.org.objectweb.asm" rev="3.2.0" conf="runtime"/>
 		<dependency org="org.junit" name="com.springsource.org.junit" rev="4.8.1" conf="build->runtime"/>
 		<dependency org="org.spockframework" name="org.spockframework.spock-core" rev="0.4" conf="build->*"/>
 	</dependencies>

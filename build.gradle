@@ -14,7 +14,7 @@ repositories {
 dependencies {
 	groovy group: 'org.codehaus.groovy', name: 'com.springsource.org.codehaus.groovy', version: '1.7.3', configuration: 'runtime'
 	groovy group: 'org.objectweb.asm', name: 'com.springsource.org.objectweb.asm', version: '3.2.0', configuration: 'runtime'
-	testCompile group: 'org.spockframework', name: 'org.spockframework.spock-core', version: '0.4', configuration: 'runtime'
+	testCompile group: 'org.spockframework', name: 'org.spockframework.spock-core', version: '0.4'
 	testCompile group: 'org.junit', name: 'com.springsource.org.junit', version: '4.8.1', configuration: 'runtime'
   	
 	compile group: 'org.springframework', name: 'org.springframework.web', version: '3.0.5.RELEASE', configuration: 'runtime'
