@@ -1,20 +1,26 @@
 package config
+import morph.plugins.MorphPluginManager;
+import morph.view.MorphRequestToViewNameTranslator;
+import morph.view.MorphViewResolver;
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+
+import sample.controllers.Greeter;
 import morph.*
+import morph.taglibs.*
 
 @Configuration
 class App {
 
 	@Bean
 	def morphInfo() {
-		new MorphInfo()
+		new Greeter()
 	}		
 	
 	@Bean
 	def pluginManager() {
-		new MorphPluginManager() // plugins: pluginList())
+		new MorphPluginManager(tagLibs: [new EchoTagLib()])
 	}
 	
 	/*
@@ -24,8 +30,15 @@ class App {
 	*/
 	
 	@Bean
+	def viewNameTranslator() {
+		new MorphRequestToViewNameTranslator()
+	}
+	
+	@Bean
 	def viewResolver() {
-		new MorphViewResolver(pluginManager:pluginManager(),cache:false)
+		def resolver = new MorphViewResolver(pluginManager())
+		resolver.cache = false
+		resolver
 	}
 }
 /*
@@ -51,8 +64,4 @@ class EnhancedProductTagLib {
 	}
 
 }
-
-http://forum.springsource.org/showthread.php?t=86329
-
-RequestToViewNameTranslator
 */ 
