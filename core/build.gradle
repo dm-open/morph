@@ -1,7 +1,4 @@
 apply plugin: 'groovy'
-apply plugin: 'war'
-apply plugin: 'jetty'
-apply plugin: 'eclipse'
 
 repositories {
    	add(new org.apache.ivy.plugins.resolver.FileSystemResolver()) {
@@ -11,7 +8,9 @@ repositories {
     }
 }
 
-version = 1.0
+version = 0.1
+group = 'org.morphframework'
+
 uploadArchives {
 	repositories {
    	add(new org.apache.ivy.plugins.resolver.FileSystemResolver()) {
@@ -33,8 +32,6 @@ dependencies {
 	compile group: 'javax.servlet', name: 'com.springsource.javax.servlet', version: '2.5.0', configuration: 'runtime'
 	compile group: 'net.sourceforge.cglib', name: 'com.springsource.net.sf.cglib', version: '2.2.0', configuration: 'runtime'
 }
-
-webAppDirName = 'resources/web'
 
 sourceSets {
     main {
