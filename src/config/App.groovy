@@ -5,12 +5,14 @@ import morph.view.MorphViewResolver;
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Import;
 
 import sample.controllers.Greeter;
 import morph.*
 import morph.taglibs.*
 
 @Configuration
+@Import([MyPlugin])
 class App {
 
 	@Bean
@@ -23,12 +25,6 @@ class App {
 		new MorphPluginManager(tagLibs: [new EchoTagLib()])
 	}
 	
-	/*
-	def pluginList() {
-		scanner.scan(Plugin.class)
-	}
-	*/
-	
 	@Bean
 	def viewNameTranslator() {
 		new MorphRequestToViewNameTranslator()
@@ -40,6 +36,12 @@ class App {
 		resolver.cache = false
 		resolver
 	}
+}
+
+@Configuration
+class MyPlugin {
+	
+	
 }
 /*
 @Plugin(dependencies=['core'])
