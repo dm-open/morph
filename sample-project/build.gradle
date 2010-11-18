@@ -1,0 +1,41 @@
+apply plugin: 'groovy'
+apply plugin: 'war'
+apply plugin: 'jetty'
+
+repositories {
+ 	add(new org.apache.ivy.plugins.resolver.FileSystemResolver()) {
+    name = 'morph-release'
+    addIvyPattern "/mnt/ivy/morph-release/[organisation]/[module]/ivy-[revision].xml"
+    addArtifactPattern "/mnt/ivy/morph-release/[organisation]/[module]/[artifact]-[revision].[ext]"
+  }
+ 	add(new org.apache.ivy.plugins.resolver.FileSystemResolver()) {
+    name = 'morph'
+    addIvyPattern "/mnt/ivy/morph/[organisation]/[module]/ivy-[revision].xml"
+    addArtifactPattern "/mnt/ivy/morph/[organisation]/[module]/[artifact]-[revision].[ext]"
+  }
+}
+
+dependencies {
+	groovy group: 'org.codehaus.groovy', name: 'com.springsource.org.codehaus.groovy', version: '1.7.3', configuration: 'runtime'
+	groovy group: 'org.objectweb.asm', name: 'com.springsource.org.objectweb.asm', version: '3.2.0', configuration: 'runtime'
+	testCompile group: 'org.spockframework', name: 'org.spockframework.spock-core', version: '0.4'
+	testCompile group: 'org.junit', name: 'com.springsource.org.junit', version: '4.8.1', configuration: 'runtime'
+  	
+	compile group: 'org.morphframework', name: 'org.morphframework.core', version: '0.1+', configuration: 'default'
+	compile group: 'org.morphframework', name: 'org.morphframework.plugin.views', version: 'latest.integration', configuration: 'default'
+}
+
+webAppDirName = 'resources/web'
+
+sourceSets {
+    main {
+        groovy {
+            srcDir 'src'
+        }
+    }
+    test {
+        groovy {
+            srcDir 'tests'
+        }
+    }
+}
