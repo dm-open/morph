@@ -11,6 +11,17 @@ repositories {
     }
 }
 
+version = 1.0
+uploadArchives {
+	repositories {
+   	add(new org.apache.ivy.plugins.resolver.FileSystemResolver()) {
+      name = 'morph-release'
+      addIvyPattern "/mnt/ivy/morph-release/[organisation]/[module]/ivy-[revision].xml"
+      addArtifactPattern "/mnt/ivy/morph-release/[organisation]/[module]/[artifact]-[revision].[ext]"
+	  }
+	}
+}
+
 dependencies {
 	groovy group: 'org.codehaus.groovy', name: 'com.springsource.org.codehaus.groovy', version: '1.7.3', configuration: 'runtime'
 	groovy group: 'org.objectweb.asm', name: 'com.springsource.org.objectweb.asm', version: '3.2.0', configuration: 'runtime'
