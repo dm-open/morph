@@ -1,3 +1,8 @@
-morph web framework by Digital Morphosis Limited
-------------------------------------------------
+Morph Web Framework
+-------------------
+
+This project is the core Morph Framework, which manages plugins. All other features in Morph will be plugins.
+
+v0.1
+- at the moment you simply reference the Morph @Configuration class and any plugins you want in your app and it brings in the spring contexts
 
