@@ -1,11 +1,23 @@
 apply plugin: 'groovy'
 
 repositories {
-   	add(new org.apache.ivy.plugins.resolver.FileSystemResolver()) {
-        name = 'morph'
-        addIvyPattern "/mnt/ivy/morph/[organisation]/[module]/ivy-[revision].xml"
-        addArtifactPattern "/mnt/ivy/morph/[organisation]/[module]/[artifact]-[revision].[ext]"
-    }
+ 	add(new org.apache.ivy.plugins.resolver.FileSystemResolver()) {
+      name = 'morph'
+      addIvyPattern "/mnt/ivy/morph/[organisation]/[module]/ivy-[revision].xml"
+      addArtifactPattern "/mnt/ivy/morph/[organisation]/[module]/[artifact]-[revision].[ext]"
+  }
+
+ 	add(new org.apache.ivy.plugins.resolver.URLResolver()) {
+		name = 'spring-release'
+		addIvyPattern "http://repository.springsource.com/ivy/bundles/release/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"
+		addArtifactPattern "http://repository.springsource.com/ivy/bundles/release/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"
+	}
+	
+	 add(new org.apache.ivy.plugins.resolver.URLResolver()) {
+		name = 'spring-external'
+		addIvyPattern "http://repository.springsource.com/ivy/bundles/external/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"
+		addArtifactPattern "http://repository.springsource.com/ivy/bundles/external/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"
+	}
 }
 
 version = '0.1.1'
