@@ -1,28 +1,35 @@
 apply plugin: 'groovy'
 apply plugin: 'war'
 apply plugin: 'jetty'
+apply plugin: 'eclipse'
 
-repositories {
- 	add(new org.apache.ivy.plugins.resolver.FileSystemResolver()) {
-    name = 'morph-release'
-    addIvyPattern "/mnt/ivy/morph-release/[organisation]/[module]/ivy-[revision].xml"
-    addArtifactPattern "/mnt/ivy/morph-release/[organisation]/[module]/[artifact]-[revision].[ext]"
-  }
- 	add(new org.apache.ivy.plugins.resolver.FileSystemResolver()) {
-    name = 'morph'
-    addIvyPattern "/mnt/ivy/morph/[organisation]/[module]/ivy-[revision].xml"
-    addArtifactPattern "/mnt/ivy/morph/[organisation]/[module]/[artifact]-[revision].[ext]"
-  }
+// so snapshots are always checked
+configurations.all {
+	resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
 
 dependencies {
-	groovy group: 'org.codehaus.groovy', name: 'com.springsource.org.codehaus.groovy', version: '1.7.3', configuration: 'runtime'
-	groovy group: 'org.objectweb.asm', name: 'com.springsource.org.objectweb.asm', version: '3.2.0', configuration: 'runtime'
-	testCompile group: 'org.spockframework', name: 'org.spockframework.spock-core', version: '0.4'
-	testCompile group: 'org.junit', name: 'com.springsource.org.junit', version: '4.8.1', configuration: 'runtime'
-  	
-	compile group: 'org.morphframework', name: 'org.morphframework.core', version: '0.1+', configuration: 'default'
-	compile group: 'org.morphframework', name: 'org.morphframework.plugin.views', version: 'latest.integration', configuration: 'default'
+    groovy 'org.codehaus.groovy:groovy-all:1.8.6'
+
+    compile 'org.morphframework:org.morphframework.core:0.1-SNAPSHOT'
+    compile 'org.morphframework:org.morphframework.plugin.views:0.1-SNAPSHOT'
+		compile 'org.springframework.data:spring-data-mongodb:1.0+'
+		
+		providedCompile 'org.mortbay.jetty:servlet-api:3.0+'
+		runtime 'javax.servlet:javax.servlet-api:3.0.1'
+		runtime 'ch.qos.logback:logback-classic:1+'
+
+    testCompile 'org.spockframework:spock-core:0.6-groovy-1.8'
+    testCompile 'junit:junit:4+'
+}
+
+repositories {
+    add(new org.apache.ivy.plugins.resolver.FileSystemResolver()) {
+        name = 'morph-release'
+        addIvyPattern "/mnt/ivy/morph-release/[organisation]/[module]/ivy-[revision].xml"
+        addArtifactPattern "/mnt/ivy/morph-release/[organisation]/[module]/[artifact]-[revision].[ext]"
+    }
+    mavenCentral()
 }
 
 webAppDirName = 'resources/web'

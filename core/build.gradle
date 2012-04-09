@@ -1,27 +1,26 @@
 apply plugin: 'groovy'
 
-repositories {
- 	add(new org.apache.ivy.plugins.resolver.FileSystemResolver()) {
-      name = 'morph'
-      addIvyPattern "/mnt/ivy/morph/[organisation]/[module]/ivy-[revision].xml"
-      addArtifactPattern "/mnt/ivy/morph/[organisation]/[module]/[artifact]-[revision].[ext]"
-  }
+version = '0.1-SNAPSHOT'
+group = 'org.morphframework'
 
- 	add(new org.apache.ivy.plugins.resolver.URLResolver()) {
-		name = 'spring-release'
-		addIvyPattern "http://repository.springsource.com/ivy/bundles/release/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"
-		addArtifactPattern "http://repository.springsource.com/ivy/bundles/release/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"
-	}
-	
-	 add(new org.apache.ivy.plugins.resolver.URLResolver()) {
-		name = 'spring-external'
-		addIvyPattern "http://repository.springsource.com/ivy/bundles/external/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"
-		addArtifactPattern "http://repository.springsource.com/ivy/bundles/external/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"
-	}
+dependencies {
+	groovy 'org.codehaus.groovy:groovy-all:1.8+'
+
+	testCompile 'org.spockframework:spock-core:0.6-groovy-1.8'
+  testCompile 'junit:junit:4+'
+
+	compile 'org.springframework:spring-webmvc:3.1+'
+  runtime 'cglib:cglib:2.2+' // required for @Configuration attribute
 }
 
-version = '0.1.2'
-group = 'org.morphframework'
+repositories {
+  add(new org.apache.ivy.plugins.resolver.FileSystemResolver()) {
+    name = 'morph-release'
+    addIvyPattern "/mnt/ivy/morph-release/[organisation]/[module]/ivy-[revision].xml"
+    addArtifactPattern "/mnt/ivy/morph-release/[organisation]/[module]/[artifact]-[revision].[ext]"
+  }
+  mavenCentral()
+}
 
 uploadArchives {
 	repositories {
@@ -31,18 +30,6 @@ uploadArchives {
       addArtifactPattern "/mnt/ivy/morph-release/[organisation]/[module]/[artifact]-[revision].[ext]"
 	  }
 	}
-}
-
-dependencies {
-	groovy group: 'org.codehaus.groovy', name: 'com.springsource.org.codehaus.groovy', version: '1.7.3', configuration: 'runtime'
-	groovy group: 'org.objectweb.asm', name: 'com.springsource.org.objectweb.asm', version: '3.2.0', configuration: 'runtime'
-	testCompile group: 'org.spockframework', name: 'org.spockframework.spock-core', version: '0.4'
-	testCompile group: 'org.junit', name: 'com.springsource.org.junit', version: '4.8.1', configuration: 'runtime'
-  	
-	compile group: 'org.springframework', name: 'org.springframework.web', version: '3.0.5.RELEASE', configuration: 'runtime'
-	compile group: 'org.springframework', name: 'org.springframework.web.servlet', version: '3.0.5.RELEASE', configuration: 'runtime'
-	compile group: 'javax.servlet', name: 'com.springsource.javax.servlet', version: '2.5.0', configuration: 'runtime'
-	compile group: 'net.sourceforge.cglib', name: 'com.springsource.net.sf.cglib', version: '2.2.0', configuration: 'runtime'
 }
 
 sourceSets {

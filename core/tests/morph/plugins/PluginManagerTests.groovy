@@ -5,7 +5,7 @@ import org.spockframework.runtime.Sputnik
 import org.springframework.context.ApplicationContext
 
 @RunWith(Sputnik.class)
-class PluginManagerTests  extends spock.lang.Specification {
+class PluginManagerTests extends spock.lang.Specification {
 	MorphPluginManager pluginManager
 	ApplicationContext applicationContext
 

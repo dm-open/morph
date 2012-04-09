@@ -3,18 +3,29 @@ package config
 import morph.plugin.ViewsPlugin;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ImportResource
+import org.springframework.data.mongodb.core.MongoTemplate
 
-import config.Morph;
-import controllers.Greeter;
+
+import com.mongodb.Mongo
+
 
 @Configuration
-@Import([Morph,ViewsPlugin])
+@Import([ViewsPlugin])
+@ImportResource("classpath:config/mongo.xml")
+@ComponentScan("controllers")
 class App {
 
 	@Bean
-	def greeter() {
-		new Greeter()
+	public Mongo mongo() throws UnknownHostException {
+		new Mongo("localhost")
+	}
+
+	@Bean
+	public MongoTemplate mongoTemplate() throws UnknownHostException {
+		new MongoTemplate(mongo(), "sample")
 	}
 }
