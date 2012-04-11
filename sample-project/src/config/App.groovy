@@ -1,6 +1,7 @@
 package config
 
-import morph.plugin.ViewsPlugin;
+import morph.plugin.ThymeLeafPlugin;
+import morph.support.ViewSupport;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan
@@ -13,19 +14,9 @@ import org.springframework.data.mongodb.core.MongoTemplate
 import com.mongodb.Mongo
 
 
-@Configuration
-@Import([ViewsPlugin])
-@ImportResource("classpath:config/mongo.xml")
-@ComponentScan("controllers")
+@Import([ThymeLeafPlugin, ViewSupport, DataSource]) 
+@ComponentScan(["controllers", "repository"])
+@Configuration 
 class App {
 
-	@Bean
-	public Mongo mongo() throws UnknownHostException {
-		new Mongo("localhost")
-	}
-
-	@Bean
-	public MongoTemplate mongoTemplate() throws UnknownHostException {
-		new MongoTemplate(mongo(), "sample")
-	}
 }

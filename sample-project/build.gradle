@@ -9,18 +9,18 @@ configurations.all {
 }
 
 dependencies {
-    groovy 'org.codehaus.groovy:groovy-all:1.8.6'
+  groovy 'org.codehaus.groovy:groovy-all:1.8.6'
 
-    compile 'org.morphframework:org.morphframework.core:0.1-SNAPSHOT'
-    compile 'org.morphframework:org.morphframework.plugin.views:0.1-SNAPSHOT'
-		compile 'org.springframework.data:spring-data-mongodb:1.0+'
-		
-		providedCompile 'org.mortbay.jetty:servlet-api:3.0+'
-		runtime 'javax.servlet:javax.servlet-api:3.0.1'
-		runtime 'ch.qos.logback:logback-classic:1+'
+  compile('org.morphframework:org.morphframework.core:0.1-SNAPSHOT') { changing = true }
+  compile('org.morphframework:org.morphframework.view-support:0.1-SNAPSHOT') { changing = true }
+  compile('org.morphframework:org.morphframework.plugin.thyme-leaf:0.1-SNAPSHOT') { changing = true }
+	compile 'org.springframework.data:spring-data-mongodb:1.0+'
+	
+	compile 'ch.qos.logback:logback-classic:1+'
+	runtime 'net.sourceforge.nekohtml:nekohtml:1.9+'
 
-    testCompile 'org.spockframework:spock-core:0.6-groovy-1.8'
-    testCompile 'junit:junit:4+'
+  testCompile 'org.spockframework:spock-core:0.6-groovy-1.8'
+  testCompile 'junit:junit:4+'
 }
 
 repositories {
@@ -32,7 +32,7 @@ repositories {
     mavenCentral()
 }
 
-webAppDirName = 'resources/web'
+webAppDirName = 'resources'
 
 sourceSets {
     main {

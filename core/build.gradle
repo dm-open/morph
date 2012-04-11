@@ -4,7 +4,7 @@ version = '0.1-SNAPSHOT'
 group = 'org.morphframework'
 
 dependencies {
-	groovy 'org.codehaus.groovy:groovy-all:1.8+'
+  groovy 'org.codehaus.groovy:groovy-all:1.8.6'
 
 	testCompile 'org.spockframework:spock-core:0.6-groovy-1.8'
   testCompile 'junit:junit:4+'
@@ -45,4 +45,27 @@ sourceSets {
     }
 }
 
+configurations {
+	sources
+}
 
+task packageSources(type: Jar) {
+	from sourceSets.main.allSource
+	baseName = "$project.name-sources"
+	classifier = 'sources'
+}
+
+artifacts {
+ sources(packageSources) {
+	 type = 'source'
+ }
+}
+
+task uploadSources(type:Upload) {
+	repositories {
+		add uploadArchives.repositories.iterator().next()
+	}
+	configuration = configurations.sources
+}
+
+uploadArchives.dependsOn uploadSources
